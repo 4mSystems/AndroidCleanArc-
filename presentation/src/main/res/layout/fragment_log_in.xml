@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools">
+
+  <data>
+
+    <variable
+      name="viewModel"
+      type="com.mina_mikhail.base_mvvm.presentation.auth.log_in.LogInViewModel" />
+  </data>
+
+  <androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@color/white"
+      android:orientation="vertical"
+      android:padding="@dimen/activity_padding">
+
+      <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_login_title"
+        style="@style/TextMediumFont"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen20"
+        android:layout_marginBottom="@dimen/dimen50"
+        android:gravity="center"
+        android:text="@string/log_in"
+        android:textAllCaps="true"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/text_size18"
+        app:layout_constraintTop_toTopOf="parent" />
+
+      <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_phone"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen14"
+        android:layout_marginTop="@dimen/dimen18"
+        android:layout_marginEnd="@dimen/dimen14"
+        android:hint="@string/email"
+        android:textColorHint="@color/black"
+        app:helperTextTextColor="@color/black"
+        app:hintTextAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_login_title">
+
+        <androidx.appcompat.widget.AppCompatEditText
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:inputType="text"
+          android:text="@={viewModel.request.email}"
+          android:textAppearance="@style/TextAppearance.AppCompat.Small"
+          android:textColor="@color/colorPrimaryDark"
+          android:textColorHint="@color/black" />
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_register_password"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen14"
+        android:layout_marginTop="@dimen/dimen6"
+        android:layout_marginEnd="@dimen/dimen14"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:textColorHint="@color/black"
+        app:helperTextTextColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_phone"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:inputType="textPassword"
+          android:text="@={viewModel.request.password}"
+          android:textAppearance="@style/TextAppearance.AppCompat.Small"
+          android:textColor="@color/colorPrimaryDark"
+          android:textColorHint="@color/black" />
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_login_forget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen14"
+        android:background="?selectableItemBackground"
+        android:onClick="@{()-> viewModel.onForgotPasswordClicked()}"
+        android:text="@string/forgot_your_password"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_register_password" />
+
+      <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_phone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen12"
+        android:layout_marginTop="@dimen/dimen12"
+        android:layout_marginEnd="@dimen/dimen12"
+        android:background="@drawable/btn_accent"
+        android:onClick="@{()-> viewModel.onLogInClicked()}"
+        android:text="@string/log_in"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_login_forget" />
+
+      <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/login_no_account"
+        style="@style/TextMediumFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:onClick="@{()-> viewModel.onSignUpClicked()}"
+        android:text="@string/not_have_account"
+        android:textAlignment="viewEnd"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/colorDarkGray" />
+
+      <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/login_no_account_bold"
+        style="@style/TextMediumFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:onClick="@{()-> viewModel.onSignUpClicked()}"
+        android:text="@string/sign_up"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/colorPrimary" />
+
+      <androidx.constraintlayout.helper.widget.Flow
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen4"
+        android:layout_marginTop="@dimen/dimen14"
+        android:layout_marginEnd="@dimen/dimen4"
+        android:layout_marginBottom="@dimen/dimen12"
+        app:constraint_referenced_ids="login_no_account,login_no_account_bold"
+        app:flow_horizontalGap="@dimen/dimen4"
+        app:flow_horizontalStyle="packed"
+        app:flow_verticalBias="0"
+        app:flow_wrapMode="chain"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_phone" />
+
+
+      <!--        <TextView-->
+      <!--          style="@style/TextMediumFont"-->
+      <!--          android:layout_width="match_parent"-->
+      <!--          android:layout_height="@dimen/dimen50"-->
+      <!--          android:layout_marginBottom="@dimen/dimen36"-->
+      <!--          android:background="@drawable/btn_accent"-->
+      <!--          android:gravity="center"-->
+      <!--          android:onClick="@{() -> viewModel.onLogInClicked()}"-->
+      <!--          android:text="@string/log_in"-->
+      <!--          android:textAllCaps="true"-->
+      <!--          android:textColor="@color/colorPrimaryDark"-->
+      <!--          android:textSize="@dimen/text_size16" />-->
+
+      <!--        <TextView-->
+      <!--          android:id="@+id/btn_sign_up"-->
+      <!--          android:layout_width="wrap_content"-->
+      <!--          android:layout_height="wrap_content"-->
+      <!--          android:layout_gravity="center"-->
+      <!--          android:background="?selectableItemBackground"-->
+      <!--          android:clickable="true"-->
+      <!--          android:focusable="true"-->
+      <!--          android:gravity="center"-->
+      <!--          android:padding="@dimen/dimen2"-->
+      <!--          android:textColor="@color/darkGray"-->
+      <!--          android:textSize="@dimen/text_size13" />-->
+
+      <!--      </LinearLayout>-->
+
+      <!--    </ScrollView>-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+  </androidx.core.widget.NestedScrollView>
+</layout>

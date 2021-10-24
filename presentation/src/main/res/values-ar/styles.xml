@@ -51,5 +51,7 @@
     <item name="android:textSize">@dimen/text_size14</item>
     <item name="fontFamily">@font/almarai_medium</item>
   </style>
-
+  <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+    <item name="cornerSize">50%</item>
+  </style>
 </resources>

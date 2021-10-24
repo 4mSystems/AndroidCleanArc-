@@ -7,7 +7,7 @@
   <data>
     <variable
         name="viewModel"
-        type="com.mina_mikhail.base_mvvm.presentation.auth.sign_up.SignUpViewModel"
+        type="com.structure.base_mvvm.presentation.auth.sign_up.SignUpViewModel"
         />
   </data>
 

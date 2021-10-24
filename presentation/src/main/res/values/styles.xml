@@ -59,9 +59,9 @@
 
     <item name="android:windowActivityTransitions">true</item>
 
-    <!-- Additionally if you want animations when dialog opening -->
-    <!--    <item name="android:windowEnterAnimation">@anim/slide_up</item>-->
-    <!--    <item name="android:windowExitAnimation">@anim/slide_down</item>-->
+    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+      <item name="cornerSize">50%</item>
+    </style>
   </style>
 
 </resources>

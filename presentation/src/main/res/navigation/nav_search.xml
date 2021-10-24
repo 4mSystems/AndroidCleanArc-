@@ -7,7 +7,7 @@
 
   <fragment
       android:id="@+id/shop_tab_fragment"
-      android:name="com.mina_mikhail.base_mvvm.presentation.search.SearchFragment"
+      android:name="com.structure.base_mvvm.presentation.search.SearchFragment"
       tools:layout="@layout/fragment_search" />
 
 </navigation>

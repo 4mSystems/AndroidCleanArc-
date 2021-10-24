@@ -7,7 +7,7 @@
 
   <fragment
       android:id="@+id/log_in_fragment"
-      android:name="com.mina_mikhail.base_mvvm.presentation.auth.log_in.LogInFragment"
+      android:name="com.structure.base_mvvm.presentation.auth.log_in.LogInFragment"
       tools:layout="@layout/fragment_log_in">
 
     <action
@@ -30,12 +30,12 @@
 
   <fragment
       android:id="@+id/sign_up_fragment"
-      android:name="com.mina_mikhail.base_mvvm.presentation.auth.sign_up.SignUpFragment"
+      android:name="com.structure.base_mvvm.presentation.auth.sign_up.SignUpFragment"
       tools:layout="@layout/fragment_sign_up" />
 
   <fragment
       android:id="@+id/forgot_password_fragment"
-      android:name="com.mina_mikhail.base_mvvm.presentation.auth.forgot_password.ForgotPasswordFragment"
+      android:name="com.structure.base_mvvm.presentation.auth.forgot_password.ForgotPasswordFragment"
       tools:layout="@layout/fragment_forgot_password" />
 
 </navigation>

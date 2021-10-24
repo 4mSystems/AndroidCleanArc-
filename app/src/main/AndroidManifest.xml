@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
-  package="com.mina_mikhail.base_mvvm">
+  package="com.structure.base_mvvm">
 
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
   <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
   <uses-permission android:name="android.permission.INTERNET" />
 
   <application
-    android:name=".core.MyApplication"
+    android:name="com.structure.base_mvvm.core.MyApplication"
     android:allowBackup="false"
     android:icon="${appIcon}"
     android:label="${appName}"
@@ -27,7 +27,7 @@
       android:resource="@color/colorPrimary" />
 
     <activity
-      android:name=".presentation.splash.SplashActivity"
+      android:name="com.structure.base_mvvm.presentation.splash.SplashActivity"
       android:screenOrientation="portrait">
 
       <intent-filter>
@@ -37,17 +37,17 @@
     </activity>
 
     <activity
-      android:name=".presentation.intro.IntroActivity"
+      android:name="com.structure.base_mvvm.presentation.intro.IntroActivity"
       android:screenOrientation="portrait" />
 
     <activity
-      android:name=".presentation.auth.AuthActivity"
+      android:name="com.structure.base_mvvm.presentation.auth.AuthActivity"
       android:configChanges="orientation|screenSize"
       android:screenOrientation="portrait"
       android:windowSoftInputMode="adjustResize|stateHidden" />
 
     <activity
-      android:name=".presentation.home.HomeActivity"
+      android:name="com.structure.base_mvvm.presentation.home.HomeActivity"
       android:configChanges="orientation|screenSize"
       android:screenOrientation="portrait"
       android:windowSoftInputMode="adjustResize|stateHidden" />
@@ -58,7 +58,7 @@
       android:value="@string/google_api_key" />
     <!-- End Google Services -->
     <service
-      android:name=".core.MyFirebaseMessagingService"
+      android:name="com.structure.base_mvvm.core.MyFirebaseMessagingService"
       android:exported="false">
       <intent-filter>
         <action android:name="com.google.firebase.MESSAGING_EVENT" />

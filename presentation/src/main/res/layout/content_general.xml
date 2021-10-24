@@ -7,10 +7,10 @@
   <data>
     <variable
         name="baseViewModel"
-        type="com.mina_mikhail.base_mvvm.presentation.base.BaseViewModel"
+        type="com.structure.base_mvvm.presentation.base.BaseViewModel"
         />
 
-    <import type="com.mina_mikhail.base_mvvm.domain.enums.DataStatus" />
+    <import type="com.structure.base_mvvm.domain.enums.DataStatus" />
 
     <import type="android.view.View" />
   </data>

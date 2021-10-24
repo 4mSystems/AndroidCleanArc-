@@ -38,5 +38,6 @@
   <string name="skip">تخطى</string>
   <string name="explore_app">تريد تصفح خدمات التطبيق</string>
   <string name="continue_as_guest">المتابعة كضيف</string>
+    <string name="send">Send</string>
 
 </resources>

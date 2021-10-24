@@ -42,8 +42,8 @@
 
 # To prevent obfusticating model classes
 # TODO : Make sure you do this for each feature module in your app
--keep class com.mina_mikhail.base_mvvm.data.* { *; }
--keep class com.mina_mikhail.base_mvvm.domain.* { *; }
+-keep class com.structure.base_mvvm.data.* { *; }
+-keep class com.structure.base_mvvm.domain.* { *; }
 
 ## Localization Helper
 -keep class com.zeugmasolutions.localehelper.* { *; }

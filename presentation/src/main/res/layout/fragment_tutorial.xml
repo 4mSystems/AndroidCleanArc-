@@ -4,7 +4,7 @@
   <data>
     <variable
         name="viewModel"
-        type="com.mina_mikhail.base_mvvm.presentation.intro.tutorial.TutorialViewModel"
+        type="com.structure.base_mvvm.presentation.intro.tutorial.TutorialViewModel"
         />
   </data>
 

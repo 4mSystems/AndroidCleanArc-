@@ -42,5 +42,6 @@
   <string name="explore_app">Need to explore app features?</string>
   <string name="continue_as_guest">Continue as Guest</string>
   <string name="google_api_key">Continue as Guest</string>
+    <string name="send">Send</string>
 
 </resources>

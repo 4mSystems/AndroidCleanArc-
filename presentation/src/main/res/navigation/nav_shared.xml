@@ -7,7 +7,7 @@
 
   <fragment
       android:id="@+id/web_view_fragment"
-      android:name="com.mina_mikhail.base_mvvm.presentation.shared.web_view.WebViewFragment"
+      android:name="com.structure.base_mvvm.presentation.shared.web_view.WebViewFragment"
       tools:layout="@layout/fragment_web_view">
 
     <argument

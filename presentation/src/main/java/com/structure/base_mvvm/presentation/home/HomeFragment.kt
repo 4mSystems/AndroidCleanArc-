@@ -1,15 +1,16 @@
 package com.structure.base_mvvm.presentation.home
 
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import codes.mina_mikhail.pretty_pop_up.PrettyPopUpHelper
+import com.structure.base_mvvm.domain.utils.Resource
 import com.structure.base_mvvm.presentation.R
 import com.structure.base_mvvm.presentation.base.BaseFragment
-import com.structure.base_mvvm.presentation.base.extensions.getMyColor
-import com.structure.base_mvvm.presentation.base.extensions.getMyString
-import com.structure.base_mvvm.presentation.base.extensions.hide
+import com.structure.base_mvvm.presentation.base.extensions.*
 import com.structure.base_mvvm.presentation.databinding.FragmentHomeBinding
 import com.structure.base_mvvm.presentation.home.viewModels.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
@@ -38,6 +39,24 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
   override
   fun setupObservers() {
     viewModel.showPrettyPopUp.observe(this) { showPrettyPopUp() }
+    lifecycleScope.launchWhenResumed {
+      viewModel.homeResponse.collect {
+        when (it) {
+          Resource.Loading -> {
+            hideKeyboard()
+            showLoading()
+          }
+          is Resource.Success -> {
+            hideLoading()
+            viewModel.homePaginateData=it.value.data
+          }
+          is Resource.Failure -> {
+            hideLoading()
+            handleApiError(it)
+          }
+        }
+      }
+    }
   }
 
   private fun showPrettyPopUp() {

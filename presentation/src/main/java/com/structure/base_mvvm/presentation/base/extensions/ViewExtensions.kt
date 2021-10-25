@@ -1,5 +1,7 @@
 package com.structure.base_mvvm.presentation.base.extensions
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
@@ -11,6 +13,9 @@ import androidx.annotation.ColorRes
 import androidx.constraintlayout.widget.Group
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import coil.ImageLoader
 import coil.load
 import coil.request.ImageRequest
@@ -81,7 +86,11 @@ fun View.disable() {
   alpha = 0.5f
 }
 
-fun View.showSnackBar(message: String, retryActionName: String? = null, action: (() -> Unit)? = null) {
+fun View.showSnackBar(
+  message: String,
+  retryActionName: String? = null,
+  action: (() -> Unit)? = null
+) {
   val snackBar = Snackbar.make(this, message, Snackbar.LENGTH_LONG)
 
   action?.let {
@@ -215,4 +224,39 @@ fun ImageView.loadRoundImage(imageUrl: String?, progressBar: ProgressBar?) {
 @BindingAdapter("load_drawable")
 fun loadDrawable(imageView: ImageView, drawable: Drawable?) {
   imageView.setImageDrawable(drawable)
+}
+
+@BindingAdapter("app:adapter", "app:span", "app:orientation")
+fun getItemsV2Binding(
+  recyclerView: RecyclerView,
+  itemsAdapter: RecyclerView.Adapter<*>?,
+  spanCount: String,
+  orientation: String
+) {
+  if (orientation == "1") initVerticalRV(
+    recyclerView,
+    recyclerView.context,
+    spanCount.toInt()
+  ) else initHorizontalRV(recyclerView, recyclerView.context, spanCount.toInt())
+  recyclerView.adapter = itemsAdapter
+}
+
+@SuppressLint("WrongConstant")
+fun initVerticalRV(recyclerView: RecyclerView, context: Context?, spanCount: Int) {
+  recyclerView.setHasFixedSize(true)
+  recyclerView.setItemViewCacheSize(30)
+  recyclerView.isDrawingCacheEnabled = true
+  recyclerView.drawingCacheQuality = View.DRAWING_CACHE_QUALITY_HIGH
+  recyclerView.layoutManager =
+    GridLayoutManager(context, spanCount, LinearLayoutManager.VERTICAL, false)
+}
+
+@SuppressLint("WrongConstant")
+fun initHorizontalRV(recyclerView: RecyclerView, context: Context?, spanCount: Int) {
+  recyclerView.setHasFixedSize(true)
+  recyclerView.setItemViewCacheSize(30)
+  recyclerView.isDrawingCacheEnabled = true
+  recyclerView.drawingCacheQuality = View.DRAWING_CACHE_QUALITY_HIGH
+  recyclerView.layoutManager =
+    GridLayoutManager(context, spanCount, LinearLayoutManager.HORIZONTAL, false)
 }

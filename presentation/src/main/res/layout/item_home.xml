@@ -44,8 +44,6 @@
         android:layout_height="@dimen/dimen50"
         android:layout_margin="@dimen/dimen4"
         android:src="@drawable/bg_no_image"
-        app:civ_border_color="@color/background_gray"
-        app:civ_border_width="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"

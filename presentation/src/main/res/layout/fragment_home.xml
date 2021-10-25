@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools">
 
   <data>
 
@@ -8,17 +10,42 @@
       type="com.structure.base_mvvm.presentation.home.viewModels.HomeViewModel" />
   </data>
 
-  <LinearLayout
+  <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundGray"
-    android:orientation="vertical">
+    android:background="@color/backgroundGray">
 
     <include
       android:id="@+id/included_toolbar"
-      layout="@layout/toolbar_white" />
+      layout="@layout/toolbar_white"
+      app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/rc_notifications"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      app:adapter="@{viewModel.adapter}"
+      app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+      app:layout_constraintBottom_toTopOf="@id/progress"
+      app:layout_constraintTop_toBottomOf="@+id/included_toolbar"
+      app:orientation="@{`1`}"
+      app:span="@{`1`}"
+      tools:listitem="@layout/item_home" />
 
-  </LinearLayout>
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+      android:id="@+id/progress"
+      style="Widget.MaterialComponents.LinearProgressIndicator"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/dimen4"
+      android:indeterminate="true"
+      android:visibility="gone"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:trackColor="@color/white"
+      app:trackThickness="@dimen/dimen4" />
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

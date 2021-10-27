@@ -1,12 +1,16 @@
 package com.structure.base_mvvm.presentation.home
 
+import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import codes.mina_mikhail.pretty_pop_up.PrettyPopUpHelper
 import com.structure.base_mvvm.domain.utils.Resource
 import com.structure.base_mvvm.presentation.R
 import com.structure.base_mvvm.presentation.base.BaseFragment
 import com.structure.base_mvvm.presentation.base.extensions.*
+import com.structure.base_mvvm.presentation.base.utils.SwipeToDeleteCallback
 import com.structure.base_mvvm.presentation.databinding.FragmentHomeBinding
 import com.structure.base_mvvm.presentation.home.viewModels.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,6 +32,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
   override
   fun setUpViews() {
     setUpToolBar()
+
   }
 
   private fun setUpToolBar() {
@@ -48,7 +53,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
           }
           is Resource.Success -> {
             hideLoading()
-            viewModel.homePaginateData=it.value.data
+            viewModel.homePaginateData = it.value.data
           }
           is Resource.Failure -> {
             hideLoading()
@@ -56,6 +61,22 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
           }
         }
       }
+    }
+    //swipe to delete
+    val swipeHandler = object : SwipeToDeleteCallback(requireActivity()) {
+      override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+        viewModel.homePaginateData.list.removeAt(viewHolder.adapterPosition)
+        viewModel.adapter.differ.submitList(viewModel.homePaginateData.list)
+        viewModel.adapter.notifyItemRemoved(viewHolder.adapterPosition)
+      }
+    }
+    val itemTouchHelper = ItemTouchHelper(swipeHandler)
+    itemTouchHelper.attachToRecyclerView(binding.rcNotifications)
+    binding.includedToolbar.ivAction.setOnClickListener {
+      singleTedBottomPicker(requireActivity())
+    }
+    selectedImages.observeForever {
+      Log.e("selectedImages", "selectedImages: ${selectedImages.value?.path}")
     }
   }
 

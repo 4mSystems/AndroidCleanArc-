@@ -1,14 +1,19 @@
 package com.structure.base_mvvm.presentation.base.extensions
 
+import android.annotation.SuppressLint
 import android.app.Activity
+import android.net.Uri
+import android.util.Log
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.navigation.NavDirections
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import com.afollestad.assent.*
 import com.structure.base_mvvm.domain.utils.FailureStatus
 import com.structure.base_mvvm.domain.utils.Resource.Failure
 import com.structure.base_mvvm.presentation.R
@@ -16,6 +21,7 @@ import com.structure.base_mvvm.presentation.base.utils.hideSoftInput
 import com.structure.base_mvvm.presentation.base.utils.showMessage
 import com.structure.base_mvvm.presentation.base.utils.showNoApiErrorAlert
 import com.structure.base_mvvm.presentation.base.utils.showNoInternetAlert
+import gun0912.tedbottompicker.TedRxBottomPicker
 
 fun Fragment.handleApiError(
   failure: Failure,

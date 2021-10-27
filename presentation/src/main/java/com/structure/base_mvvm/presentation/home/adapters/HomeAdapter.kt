@@ -13,7 +13,6 @@ import com.structure.base_mvvm.presentation.databinding.ItemHomeBinding
 import com.structure.base_mvvm.presentation.home.viewModels.ItemHomeViewModel
 
 class HomeAdapter : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
-
   private val differCallback = object : DiffUtil.ItemCallback<HomeData>() {
     override fun areItemsTheSame(oldItem: HomeData, newItem: HomeData): Boolean {
       return oldItem.id == newItem.id

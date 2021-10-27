@@ -17,6 +17,7 @@ object Libraries {
   const val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
   const val viewModelState =
     "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.lifecycle}"
+  const val paging_version = "androidx.paging:paging-runtime:${Versions.paging_version}"
 
   // Kotlin Coroutines
   const val coroutinesCore =
@@ -65,5 +66,6 @@ object Libraries {
   const val firebase_core = "com.google.firebase:firebase-core"
   const val firebase_messaging = "com.google.firebase:firebase-messaging-ktx:${Versions.firebase}"
 
-
+  //multi select media
+  const val ted_bottom_picker = "gun0912.ted:tedbottompicker:${Versions.ted_bottom_picker}"
 }

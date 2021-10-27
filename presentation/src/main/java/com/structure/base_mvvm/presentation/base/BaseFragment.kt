@@ -1,16 +1,26 @@
 package com.structure.base_mvvm.presentation.base
 
+import android.annotation.SuppressLint
 import android.app.Dialog
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.ObservableArrayList
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import com.afollestad.assent.Permission
+import com.afollestad.assent.askForPermissions
+import com.afollestad.assent.isAllGranted
+import com.afollestad.assent.showSystemAppDetailsPage
+import com.structure.base_mvvm.presentation.base.utils.SingleLiveEvent
 import com.structure.base_mvvm.presentation.base.utils.hideLoadingDialog
 import com.structure.base_mvvm.presentation.base.utils.showLoadingDialog
+import gun0912.tedbottompicker.TedRxBottomPicker
 import java.util.Locale
 
 abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
@@ -20,9 +30,14 @@ abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
   private var mRootView: View? = null
   private var hasInitializedRootView = false
   private var progressDialog: Dialog? = null
+  val selectedImages = SingleLiveEvent<Uri>()
 
   override
-  fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+  fun onCreateView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View? {
     if (mRootView == null) {
       initViewBinding(inflater, container)
     }
@@ -102,4 +117,48 @@ abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
 
   val currentLanguage: Locale
     get() = Locale.getDefault()
+
+  // check Permissions
+  private fun checkGalleryPermissions(fragmentActivity: FragmentActivity): Boolean {
+    fragmentActivity.askForPermissions(
+      Permission.WRITE_EXTERNAL_STORAGE,
+      Permission.READ_EXTERNAL_STORAGE,
+      Permission.CAMERA
+    ) {}
+    return if (fragmentActivity.isAllGranted(
+        Permission.WRITE_EXTERNAL_STORAGE,
+        Permission.READ_EXTERNAL_STORAGE,
+        Permission.CAMERA
+      )
+    )
+      true
+    else {
+      fragmentActivity.showSystemAppDetailsPage()
+      false
+    }
+  }
+
+  // Pick Single image
+  @SuppressLint("CheckResult")
+  fun singleTedBottomPicker(fragmentActivity: FragmentActivity) {
+    if (checkGalleryPermissions(fragmentActivity)) {
+      TedRxBottomPicker.with(fragmentActivity)
+        .show()
+        .subscribe({
+          selectedImages.value = it
+        }, Throwable::printStackTrace)
+    }
+  }
+
+  @SuppressLint("CheckResult")
+  fun multiTedBottomPicker(fragmentActivity: FragmentActivity) {
+    if (checkGalleryPermissions(fragmentActivity)) {
+      TedRxBottomPicker.with(fragmentActivity)
+        .show()
+        .subscribe({
+          selectedImages.value = it
+        }, Throwable::printStackTrace)
+    }
+  }
+
 }

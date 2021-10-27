@@ -13,6 +13,7 @@ object Versions {
 
   // Arch Components
   const val lifecycle = "2.4.0-alpha03"
+  const val paging_version = "2.1.2"
 
   // Kotlin Coroutines
   const val kotlinCoroutines = "1.4.1"
@@ -45,6 +46,9 @@ object Versions {
   const val rxLocation = "1.0"
 
   //Fire base
-  const val firebase="22.0.0"
-  const val google_services="4.3.10"
+  const val firebase = "22.0.0"
+  const val google_services = "4.3.10"
+
+  //ted bottom picker
+  const val ted_bottom_picker = "2.0.1"
 }

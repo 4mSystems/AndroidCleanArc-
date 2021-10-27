@@ -1,6 +1,7 @@
 package com.structure.base_mvvm.presentation.home.viewModels
 
 import androidx.lifecycle.viewModelScope
+import com.structure.base_mvvm.domain.home.models.HomeData
 import com.structure.base_mvvm.domain.home.models.HomePaginateData
 import com.structure.base_mvvm.domain.home.use_case.HomeUseCase
 import com.structure.base_mvvm.domain.utils.BaseResponse

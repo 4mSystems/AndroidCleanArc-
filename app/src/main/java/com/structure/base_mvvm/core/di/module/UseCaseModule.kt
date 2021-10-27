@@ -12,6 +12,8 @@ import com.structure.base_mvvm.domain.auth.repository.AuthRepository
 import com.structure.base_mvvm.domain.auth.use_case.LogInUseCase
 import com.structure.base_mvvm.domain.general.use_case.ClearPreferencesUseCase
 import com.structure.base_mvvm.domain.general.use_case.GeneralUseCases
+import com.structure.base_mvvm.domain.home.repository.HomeRepository
+import com.structure.base_mvvm.domain.home.use_case.HomeUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,6 +30,12 @@ class UseCaseModule {
     authRepository: AuthRepository,
     saveUserToLocalUseCase: SaveUserToLocalUseCase
   ): LogInUseCase = LogInUseCase(authRepository, saveUserToLocalUseCase)
+
+  @Provides
+  @Singleton
+  fun provideHomeUseCase(
+    homeRepository: HomeRepository
+  ): HomeUseCase = HomeUseCase(homeRepository)
 
   @Provides
   @Singleton
@@ -55,7 +63,12 @@ class UseCaseModule {
     setFirstTimeUseCase: SetFirstTimeUseCase,
     clearPreferencesUseCase: ClearPreferencesUseCase
   ): GeneralUseCases =
-    GeneralUseCases(checkFirstTimeUseCase, checkLoggedInUserUseCase, setFirstTimeUseCase, clearPreferencesUseCase)
+    GeneralUseCases(
+      checkFirstTimeUseCase,
+      checkLoggedInUserUseCase,
+      setFirstTimeUseCase,
+      clearPreferencesUseCase
+    )
 
   @Provides
   @Singleton

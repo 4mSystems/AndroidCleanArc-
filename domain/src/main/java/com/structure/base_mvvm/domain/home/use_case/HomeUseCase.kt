@@ -19,7 +19,7 @@ class HomeUseCase @Inject constructor(
     flow {
       emit(Resource.Loading)
       val result = homeRepository.home(page)
-      println(" USE_CASE =>${result}")
+
       emit(result)
     }.flowOn(Dispatchers.IO)
 }

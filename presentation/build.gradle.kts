@@ -67,6 +67,10 @@ dependencies {
   implementation(Libraries.playServicesLocation)
   implementation(Libraries.rxLocation)
   implementation(Libraries.firebase_messaging)
+
+  //Ted bottom picker
+  implementation(Libraries.ted_bottom_picker)
+
   // Project Modules
   implementation(project(Config.Modules.domain))
   implementation(project(Config.Modules.prettyPopUp))

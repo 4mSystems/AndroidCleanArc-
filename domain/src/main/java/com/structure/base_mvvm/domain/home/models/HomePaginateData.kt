@@ -7,5 +7,5 @@ import com.structure.base_mvvm.domain.general.paginate.Paginate
 
 class HomePaginateData(
   @SerializedName("data")
-  val list: List<HomeData> = arrayListOf(), meta: Meta= Meta(), links: Links=Links()
+  val list: ArrayList<HomeData> = arrayListOf(), meta: Meta= Meta(), links: Links=Links()
 ) : Paginate(meta, links)
